@@ -11,6 +11,14 @@ HERE = Path(__file__).resolve().parent
 FEATURES = ["distance_km", "prep_time_min", "traffic_level", "rain"]
 
 app = FastAPI(title="Delivery Time Predictor", version="1.0.0")
+@app.get("/")
+def home():
+    return {
+        "message": "Delivery Time Predictor API is running",
+        "status": "ok",
+        "docs": "/docs",
+        "health": "/health"
+    }
 model = joblib.load(HERE / "model.joblib")
 
 
